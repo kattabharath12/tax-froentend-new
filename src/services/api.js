@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
+// Use your Railway backend URL
+const API_BASE_URL = 'https://tax-backeend-new-production.up.railway.app';
+
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -8,7 +10,7 @@ const api = axios.create({
   },
 });
 
-// Request interceptor to add auth token
+// Keep your existing interceptors
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -22,7 +24,6 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor to handle errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
